@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form enctype="multipart/form-data" id="myForm">
+        <label for="img">Select image:</label>
+        <input type="file" id="img" name="img" accept="image/*">
+        <input type="submit">
+      </form> 
+      <script>
+        myForm.addEventListener("submit",function (e){
+               e.preventDefault();
+               const formData=new FormData(e.target);
+                console.log(formData);
+                console.log(formData.get("img"));
+               fetch("http://localhost:7777/upload",{
+                 method:"POST",
+                 body:formData.get("img")
+               })
+ 
+        });
+ </script>
+</body>
+</html>
